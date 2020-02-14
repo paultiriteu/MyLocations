@@ -6,5 +6,5 @@ target 'MyLocations' do
   use_frameworks!
 
   # Pods for MyLocations
-
+  pod 'Alamofire'
 end
