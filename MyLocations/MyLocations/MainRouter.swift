@@ -9,8 +9,15 @@
 import UIKit
 
 class MainRouter {
-    func getLocationsViewController() -> UIViewController {
+    private var navController: UINavigationController?
+    
+    func getLocationsViewController() -> UINavigationController {
+        let repository = LocationsRepository()
+        let viewModel = LocationsViewModel(repository: repository)
+        let viewController = LocationsViewController(viewModel: viewModel)
         
-        return LocationsViewController()
+        navController = UINavigationController(rootViewController: viewController)
+        
+        return navController!
     }
 }
