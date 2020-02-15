@@ -24,7 +24,9 @@ class LocationsViewModel {
     
     func getLocations() {
         repository.getLocations(onSuccess: { [weak self] locations in
-            self?.locations = locations
+            guard let weakSelf = self else { return }
+            weakSelf.locations = locations
+            weakSelf.delegate?.locationsViewModel(weakSelf, didUpdateLocations: locations)
         }, onError: { [weak self] in
             print("error")
         })

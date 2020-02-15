@@ -14,7 +14,7 @@ class MainRouter {
     func getLocationsViewController() -> UINavigationController {
         let repository = LocationsRepository()
         let viewModel = LocationsViewModel(repository: repository)
-        let viewController = LocationsViewController(viewModel: viewModel)
+        let viewController = LocationsTableViewController(viewModel: viewModel)
         
         navController = UINavigationController(rootViewController: viewController)
         navController?.setNavigationBarHidden(true, animated: true)

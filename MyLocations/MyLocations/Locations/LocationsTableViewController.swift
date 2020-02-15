@@ -8,12 +8,12 @@
 
 import UIKit
 
-class LocationsViewController: UITableViewController {
+class LocationsTableViewController: UITableViewController {
     private let viewModel: LocationsViewModel
     
     init(viewModel: LocationsViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "LocationsViewController", bundle: Bundle(for: LocationsViewController.self))
+        super.init(nibName: "LocationsTableViewController", bundle: Bundle(for: LocationsTableViewController.self))
     }
     
     required init?(coder: NSCoder) {
@@ -23,23 +23,39 @@ class LocationsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        viewModel.getLocations()
     }
     
     private func configureUI() {
-//        tableView.delegate = self
-//        tableView.dataSource = self
         viewModel.delegate = self
+    
         tableView.register(UINib(nibName: "LocationTableViewCell", bundle: Bundle(for: LocationTableViewCell.self)), forCellReuseIdentifier: "LocationTableViewCell")
+        tableView.isScrollEnabled = true
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.locations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = LocationTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell", for: indexPath) as? LocationTableViewCell else {
+            return UITableViewCell()
+        }
         cell.configure(location: viewModel.locations[indexPath.row])
+        cell.selectionStyle = .none
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 
-extension LocationsViewController: LocationsViewModelDelegate {
+extension LocationsTableViewController: LocationsViewModelDelegate {
     func locationsViewModel(_ viewModel: LocationsViewModel, didUpdateLocations locations: [LocationModel]) {
         tableView.reloadData()
     }

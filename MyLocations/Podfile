@@ -7,5 +7,6 @@ target 'MyLocations' do
 
   # Pods for MyLocations
   pod 'Alamofire'
+  pod 'AlamofireImage'
   pod 'RealmSwift'
 end
