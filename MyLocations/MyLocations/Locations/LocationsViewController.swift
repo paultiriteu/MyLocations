@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationsViewController: UIViewController {
+class LocationsViewController: UITableViewController {
     private let viewModel: LocationsViewModel
     
     init(viewModel: LocationsViewModel) {
@@ -22,5 +22,27 @@ class LocationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
     }
+    
+    private func configureUI() {
+//        tableView.delegate = self
+//        tableView.dataSource = self
+        viewModel.delegate = self
+        tableView.register(UINib(nibName: "LocationTableViewCell", bundle: Bundle(for: LocationTableViewCell.self)), forCellReuseIdentifier: "LocationTableViewCell")
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = LocationTableViewCell()
+        cell.configure(location: viewModel.locations[indexPath.row])
+        return cell
+    }
+}
+
+extension LocationsViewController: LocationsViewModelDelegate {
+    func locationsViewModel(_ viewModel: LocationsViewModel, didUpdateLocations locations: [LocationModel]) {
+        tableView.reloadData()
+    }
+    
+    
 }

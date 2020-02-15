@@ -17,6 +17,7 @@ class MainRouter {
         let viewController = LocationsViewController(viewModel: viewModel)
         
         navController = UINavigationController(rootViewController: viewController)
+        navController?.setNavigationBarHidden(true, animated: true)
         
         return navController!
     }
