@@ -16,6 +16,8 @@
 		3CA8691323F7025F0025F175 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8691123F7025F0025F175 /* LocationsViewController.swift */; };
 		3CA8691423F7025F0025F175 /* LocationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA8691223F7025F0025F175 /* LocationsViewController.xib */; };
 		3CA8691623F702860025F175 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8691523F702860025F175 /* MainRouter.swift */; };
+		3CA8691E23F8343B0025F175 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8691D23F8343B0025F175 /* LocationsViewModel.swift */; };
+		3CA8692023F834430025F175 /* LocationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8691F23F834430025F175 /* LocationsRepository.swift */; };
 		7469346FD00C5F675CF28BAF /* Pods_MyLocations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0753BCD1190D15520D72004 /* Pods_MyLocations.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		3CA8691123F7025F0025F175 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		3CA8691223F7025F0025F175 /* LocationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationsViewController.xib; sourceTree = "<group>"; };
 		3CA8691523F702860025F175 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		3CA8691D23F8343B0025F175 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
+		3CA8691F23F834430025F175 /* LocationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsRepository.swift; sourceTree = "<group>"; };
 		4C216E91A6EB7E2BDB885FF9 /* Pods-MyLocations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.release.xcconfig"; path = "Target Support Files/Pods-MyLocations/Pods-MyLocations.release.xcconfig"; sourceTree = "<group>"; };
 		5E12EDC48EA9D3E935BCB42D /* Pods-MyLocations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.debug.xcconfig"; path = "Target Support Files/Pods-MyLocations/Pods-MyLocations.debug.xcconfig"; sourceTree = "<group>"; };
 		F0753BCD1190D15520D72004 /* Pods_MyLocations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyLocations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +99,8 @@
 			children = (
 				3CA8691123F7025F0025F175 /* LocationsViewController.swift */,
 				3CA8691223F7025F0025F175 /* LocationsViewController.xib */,
+				3CA8691D23F8343B0025F175 /* LocationsViewModel.swift */,
+				3CA8691F23F834430025F175 /* LocationsRepository.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -225,8 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CA8691623F702860025F175 /* MainRouter.swift in Sources */,
+				3CA8691E23F8343B0025F175 /* LocationsViewModel.swift in Sources */,
 				3CA8690123F700FA0025F175 /* ViewController.swift in Sources */,
 				3CA868FD23F700FA0025F175 /* AppDelegate.swift in Sources */,
+				3CA8692023F834430025F175 /* LocationsRepository.swift in Sources */,
 				3CA868FF23F700FA0025F175 /* SceneDelegate.swift in Sources */,
 				3CA8691323F7025F0025F175 /* LocationsViewController.swift in Sources */,
 			);

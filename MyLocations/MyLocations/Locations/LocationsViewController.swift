@@ -9,8 +9,10 @@
 import UIKit
 
 class LocationsViewController: UIViewController {
-
-    init() {
+    private let viewModel: LocationsViewModel
+    
+    init(viewModel: LocationsViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: "LocationsViewController", bundle: Bundle(for: LocationsViewController.self))
     }
     
