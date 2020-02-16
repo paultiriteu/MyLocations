@@ -22,4 +22,8 @@ class LocationModel: Object, Codable {
         case address
         case imageUrl = "img"
     }
+    
+    override class func primaryKey() -> String? {
+        return "tag"
+    }
 }

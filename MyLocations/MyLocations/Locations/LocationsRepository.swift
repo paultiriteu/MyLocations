@@ -32,9 +32,9 @@ class LocationsRepository {
             do {
                 let result = try decoder.decode([LocationModel].self, from: data)
                 
-                try result.forEach { location in
-                    try self?.realm.write {
-                        self?.realm.add(location)
+                try self?.realm.write {
+                    result.forEach { location in
+                        self?.realm.add(location, update: .all)
                     }
                 }
                 
