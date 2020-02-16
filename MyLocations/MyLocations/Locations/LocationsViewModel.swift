@@ -14,12 +14,14 @@ protocol LocationsViewModelDelegate: class {
 
 class LocationsViewModel {
     private let repository: LocationsRepository
+    private let router: MainRouter
     var locations = [LocationModel]()
     
     weak var delegate: LocationsViewModelDelegate?
     
-    init(repository: LocationsRepository) {
+    init(repository: LocationsRepository, router: MainRouter) {
         self.repository = repository
+        self.router = router
     }
     
     func getLocations() {
@@ -30,5 +32,9 @@ class LocationsViewModel {
         }, onError: { [weak self] in
             print("error")
         })
+    }
+    
+    func toDetailsViewController(index: Int) {
+        router.toLocationDetailsViewController(location: locations[index])
     }
 }

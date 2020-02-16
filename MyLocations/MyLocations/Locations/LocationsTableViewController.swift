@@ -23,6 +23,7 @@ class LocationsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        showSpinner(onView: view)
         viewModel.getLocations()
     }
     
@@ -50,7 +51,15 @@ class LocationsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.toDetailsViewController(index: indexPath.row)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
 }
@@ -58,7 +67,6 @@ class LocationsTableViewController: UITableViewController {
 extension LocationsTableViewController: LocationsViewModelDelegate {
     func locationsViewModel(_ viewModel: LocationsViewModel, didUpdateLocations locations: [LocationModel]) {
         tableView.reloadData()
+        removeSpinner()
     }
-    
-    
 }

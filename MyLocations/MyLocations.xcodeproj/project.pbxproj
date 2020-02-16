@@ -18,6 +18,12 @@
 		3CA8692723F841CE0025F175 /* LocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA8692523F841CE0025F175 /* LocationTableViewCell.xib */; };
 		3CA8692A23F84A9F0025F175 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8692823F84A9F0025F175 /* LocationsTableViewController.swift */; };
 		3CA8692B23F84A9F0025F175 /* LocationsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA8692923F84A9F0025F175 /* LocationsTableViewController.xib */; };
+		3CA8693023F988270025F175 /* RealmLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8692F23F988270025F175 /* RealmLocation.swift */; };
+		3CA8693323F98C6D0025F175 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8693223F98C6C0025F175 /* UIViewControllerExtension.swift */; };
+		3CA8693723F98D910025F175 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8693523F98D910025F175 /* LocationDetailsViewController.swift */; };
+		3CA8693823F98D910025F175 /* LocationDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA8693623F98D910025F175 /* LocationDetailsViewController.xib */; };
+		3CA8693A23F98E0C0025F175 /* LocationDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8693923F98E0C0025F175 /* LocationDetailsViewModel.swift */; };
+		3CA8693C23F98E1A0025F175 /* LocationDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8693B23F98E1A0025F175 /* LocationDetailsRepository.swift */; };
 		7469346FD00C5F675CF28BAF /* Pods_MyLocations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0753BCD1190D15520D72004 /* Pods_MyLocations.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +41,12 @@
 		3CA8692523F841CE0025F175 /* LocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationTableViewCell.xib; sourceTree = "<group>"; };
 		3CA8692823F84A9F0025F175 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		3CA8692923F84A9F0025F175 /* LocationsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationsTableViewController.xib; sourceTree = "<group>"; };
+		3CA8692F23F988270025F175 /* RealmLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLocation.swift; sourceTree = "<group>"; };
+		3CA8693223F98C6C0025F175 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		3CA8693523F98D910025F175 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
+		3CA8693623F98D910025F175 /* LocationDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationDetailsViewController.xib; sourceTree = "<group>"; };
+		3CA8693923F98E0C0025F175 /* LocationDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewModel.swift; sourceTree = "<group>"; };
+		3CA8693B23F98E1A0025F175 /* LocationDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsRepository.swift; sourceTree = "<group>"; };
 		4C216E91A6EB7E2BDB885FF9 /* Pods-MyLocations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.release.xcconfig"; path = "Target Support Files/Pods-MyLocations/Pods-MyLocations.release.xcconfig"; sourceTree = "<group>"; };
 		5E12EDC48EA9D3E935BCB42D /* Pods-MyLocations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.debug.xcconfig"; path = "Target Support Files/Pods-MyLocations/Pods-MyLocations.debug.xcconfig"; sourceTree = "<group>"; };
 		F0753BCD1190D15520D72004 /* Pods_MyLocations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyLocations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +93,9 @@
 		3CA868FB23F700FA0025F175 /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				3CA8693423F98D7E0025F175 /* LocationDetails */,
+				3CA8693123F98C5F0025F175 /* Utils */,
+				3CA8692E23F9881C0025F175 /* RealmModels */,
 				3CA8691023F702400025F175 /* Locations */,
 				3CA868FC23F700FA0025F175 /* AppDelegate.swift */,
 				3CA8690523F700FD0025F175 /* Assets.xcassets */,
@@ -111,6 +126,33 @@
 				3CA8692523F841CE0025F175 /* LocationTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		3CA8692E23F9881C0025F175 /* RealmModels */ = {
+			isa = PBXGroup;
+			children = (
+				3CA8692F23F988270025F175 /* RealmLocation.swift */,
+			);
+			path = RealmModels;
+			sourceTree = "<group>";
+		};
+		3CA8693123F98C5F0025F175 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3CA8693223F98C6C0025F175 /* UIViewControllerExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3CA8693423F98D7E0025F175 /* LocationDetails */ = {
+			isa = PBXGroup;
+			children = (
+				3CA8693523F98D910025F175 /* LocationDetailsViewController.swift */,
+				3CA8693623F98D910025F175 /* LocationDetailsViewController.xib */,
+				3CA8693923F98E0C0025F175 /* LocationDetailsViewModel.swift */,
+				3CA8693B23F98E1A0025F175 /* LocationDetailsRepository.swift */,
+			);
+			path = LocationDetails;
 			sourceTree = "<group>";
 		};
 		549D378AE4EF81FA7EC2B031 /* Pods */ = {
@@ -182,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CA8693823F98D910025F175 /* LocationDetailsViewController.xib in Resources */,
 				3CA8692B23F84A9F0025F175 /* LocationsTableViewController.xib in Resources */,
 				3CA8690923F700FD0025F175 /* LaunchScreen.storyboard in Resources */,
 				3CA8690623F700FD0025F175 /* Assets.xcassets in Resources */,
@@ -238,8 +281,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CA8693023F988270025F175 /* RealmLocation.swift in Sources */,
+				3CA8693C23F98E1A0025F175 /* LocationDetailsRepository.swift in Sources */,
 				3CA8691623F702860025F175 /* MainRouter.swift in Sources */,
+				3CA8693323F98C6D0025F175 /* UIViewControllerExtension.swift in Sources */,
 				3CA8692623F841CE0025F175 /* LocationTableViewCell.swift in Sources */,
+				3CA8693723F98D910025F175 /* LocationDetailsViewController.swift in Sources */,
+				3CA8693A23F98E0C0025F175 /* LocationDetailsViewModel.swift in Sources */,
 				3CA8691E23F8343B0025F175 /* LocationsViewModel.swift in Sources */,
 				3CA868FD23F700FA0025F175 /* AppDelegate.swift in Sources */,
 				3CA8692023F834430025F175 /* LocationsRepository.swift in Sources */,

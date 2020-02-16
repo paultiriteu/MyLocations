@@ -9,8 +9,8 @@
 import Foundation
 
 struct LocationModel: Codable {
-    var latitude: Double?
-    var longitude: Double?
+    var latitude: Float?
+    var longitude: Float?
     var tag: String?
     var address: String?
     var imageUrl: String?

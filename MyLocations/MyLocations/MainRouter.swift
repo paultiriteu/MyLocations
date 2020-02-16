@@ -13,12 +13,20 @@ class MainRouter {
     
     func getLocationsViewController() -> UINavigationController {
         let repository = LocationsRepository()
-        let viewModel = LocationsViewModel(repository: repository)
+        let viewModel = LocationsViewModel(repository: repository, router: self)
         let viewController = LocationsTableViewController(viewModel: viewModel)
         
         navController = UINavigationController(rootViewController: viewController)
         navController?.setNavigationBarHidden(true, animated: true)
         
         return navController!
+    }
+    
+    func toLocationDetailsViewController(location: LocationModel) {
+        let repository = LocationDetailsRepository()
+        let viewModel = LocationDetailsViewModel(location: location, repository: repository)
+        let viewController = LocationDetailsViewController(viewModel: viewModel)
+        
+        navController?.pushViewController(viewController, animated: true)
     }
 }

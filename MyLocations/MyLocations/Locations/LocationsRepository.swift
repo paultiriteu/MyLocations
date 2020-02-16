@@ -31,6 +31,20 @@ class LocationsRepository {
             let decoder = JSONDecoder()
             do {
                 let result = try decoder.decode([LocationModel].self, from: data)
+                
+                try result.forEach { location in
+                    try self?.realm.write {
+                        let realmLocation = RealmLocation()
+                        realmLocation.latitude = location.latitude ?? 0
+                        realmLocation.longitude = location.longitude ?? 0
+                        realmLocation.tag = location.tag ?? ""
+                        realmLocation.address = location.address ?? ""
+                        realmLocation.imageUrl = location.imageUrl ?? ""
+                        
+                        self?.realm.add(realmLocation)
+                    }
+                }
+                
                 onSuccess(result)
             } catch {
                 onError()
