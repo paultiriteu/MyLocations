@@ -27,26 +27,28 @@ class LocationsViewModel {
     init(repository: LocationsRepository, router: MainRouter) {
         self.repository = repository
         self.router = router
-        
-        let notificationToken = realm.objects(LocationModel.self).observe { change in
-            switch change {
-            case .initial(let results):
-                self.locations = Array(results)
-            case .update(_, let deletions, let insertions, let modifications):
-                print("objects")
-            case .error(let error):
-                print(error)
-            }
-        }
     }
     
     func getLocations() {
         repository.getLocations(onSuccess: { [weak self] locations in
-            guard let weakSelf = self else { return }
-//            weakSelf.locations = locations
-//            weakSelf.delegate?.locationsViewModel(weakSelf, didUpdateLocations: locations)
+            guard let self = self else { return }
+            self.repository.getRealmLocations { response in
+                self.locations = response
+            }
+            self.delegate?.locationsViewModel(self, didUpdateLocations: locations)
         }, onError: { [weak self] in
             print("error")
+        })
+    }
+    
+    @objc func deleteLocation(index: Int, onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+        repository.deleteLocation(location: locations[index], onSuccess: {
+            self.repository.getRealmLocations { response in
+                self.locations = response
+                onSuccess()
+            }
+        }, onError: {
+            onError()
         })
     }
     

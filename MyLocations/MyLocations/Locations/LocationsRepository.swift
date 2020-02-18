@@ -23,6 +23,7 @@ class LocationsRepository {
         }
         
         Alamofire.request(url).responseJSON { [weak self] response in
+            guard let self = self else { return }
             guard let data = response.data else {
                 onError()
                 return
@@ -32,9 +33,9 @@ class LocationsRepository {
             do {
                 let result = try decoder.decode([LocationModel].self, from: data)
                 
-                try self?.realm.write {
+                try self.realm.write {
                     result.forEach { location in
-                        self?.realm.add(location, update: .all)
+                        self.realm.add(location, update: .all)
                     }
                 }
                 
@@ -42,6 +43,26 @@ class LocationsRepository {
             } catch {
                 onError()
             }
+        }
+    }
+    
+    func getRealmLocations(onSuccess: @escaping ([LocationModel]) -> Void) {
+        let locations = Array(realm.objects(LocationModel.self))
+        onSuccess(locations)
+    }
+    
+    func deleteLocation(location: LocationModel, onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+        do {
+            if let existingLocation = realm.objects(LocationModel.self).filter("tag = %@", location.tag).first {
+                try realm.write {
+                    realm.delete(existingLocation)
+                }
+            onSuccess()
+            } else {
+                onError()
+            }
+        } catch {
+            onError()
         }
     }
 }

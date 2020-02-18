@@ -62,6 +62,20 @@ class LocationsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let contextualAction = UIContextualAction(style: .destructive, title: "Delete", handler: { [weak self] _,_,_  in
+            guard let self = self else { return }
+            self.viewModel.deleteLocation(index: indexPath.row, onSuccess: {
+                tableView.reloadData()
+            }, onError: {
+                let alert = UIAlertController(title: "Error", message: "Could not delete the location", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            })
+        })
+        return UISwipeActionsConfiguration(actions: [contextualAction])
+    }
 }
 
 extension LocationsTableViewController: LocationsViewModelDelegate {
