@@ -24,7 +24,7 @@ class LocationsTableViewController: UITableViewController {
         super.viewDidLoad()
         configureUI()
         showSpinner(onView: view)
-        viewModel.getLocations()
+        viewModel.loadLocations()
     }
     
     private func configureUI() {

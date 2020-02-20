@@ -11,12 +11,13 @@ import Alamofire
 
 class LocationsRepository {
     private var realm: Realm
+    private var observer: NotificationToken?
     
     init() {
         self.realm = try! Realm()
     }
     
-    func getLocations(onSuccess: @escaping ([LocationModel]) -> Void, onError: @escaping () -> Void) {
+    func loadLocations(onError: @escaping () -> Void) {
         guard let url = URL(string: "https://demo8553475.mockable.io/mylocations") else {
             onError()
             return
@@ -38,11 +39,26 @@ class LocationsRepository {
                         self.realm.add(location, update: .all)
                     }
                 }
-                
-                onSuccess(result)
             } catch {
                 onError()
             }
+        }
+    }
+    
+    func observeRealmLocations(didChange: @escaping ([LocationModel]) -> Void) {
+        observer?.invalidate()
+        observer = realm.objects(LocationModel.self).observe { (change) in
+            let models: [LocationModel]
+            switch change {
+            case .initial(let initial):
+                models = Array(initial)
+            case .error(let error):
+                print(error)
+                models = []
+            case .update(let updated, _, _, _):
+                models = Array(updated)
+            }
+            didChange(models)
         }
     }
     
@@ -64,5 +80,9 @@ class LocationsRepository {
         } catch {
             onError()
         }
+    }
+    
+    deinit {
+        observer?.invalidate()
     }
 }

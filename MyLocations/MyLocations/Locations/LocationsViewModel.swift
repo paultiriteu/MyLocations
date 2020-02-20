@@ -27,29 +27,21 @@ class LocationsViewModel {
     init(repository: LocationsRepository, router: MainRouter) {
         self.repository = repository
         self.router = router
+        
+        repository.observeRealmLocations { [weak self] (locations) in
+            print(locations.count)
+            self?.locations = locations
+        }
     }
     
-    func getLocations() {
-        repository.getLocations(onSuccess: { [weak self] locations in
-            guard let self = self else { return }
-            self.repository.getRealmLocations { response in
-                self.locations = response
-            }
-            self.delegate?.locationsViewModel(self, didUpdateLocations: locations)
-        }, onError: { [weak self] in
-            print("error")
+    func loadLocations() {
+        repository.loadLocations(onError: {
+            print("could not load locations")
         })
     }
     
     @objc func deleteLocation(index: Int, onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
-        repository.deleteLocation(location: locations[index], onSuccess: {
-            self.repository.getRealmLocations { response in
-                self.locations = response
-                onSuccess()
-            }
-        }, onError: {
-            onError()
-        })
+        repository.deleteLocation(location: locations[index], onSuccess: onSuccess, onError: onError)
     }
     
     func toDetailsViewController(index: Int) {
