@@ -10,10 +10,16 @@ import Foundation
 
 class LocationDetailsViewModel {
     private let repository: LocationDetailsRepository
+    private let router: MainRouter
     let location: LocationModel
     
-    init(location: LocationModel, repository: LocationDetailsRepository) {
+    init(location: LocationModel, repository: LocationDetailsRepository, router: MainRouter) {
         self.location = location
         self.repository = repository
+        self.router = router
+    }
+    
+    func toFormViewController() {
+        router.toFormViewController(formPurpose: .editLocation, location: location)
     }
 }

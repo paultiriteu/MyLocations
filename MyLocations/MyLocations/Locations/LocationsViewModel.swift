@@ -30,7 +30,7 @@ class LocationsViewModel {
         
         repository.observeRealmLocations { [weak self] (locations) in
             print(locations.count)
-            self?.locations = locations
+            self?.locations = locations.sorted(by: { $0.tag < $1.tag })
         }
     }
     
@@ -46,5 +46,9 @@ class LocationsViewModel {
     
     func toDetailsViewController(index: Int) {
         router.toLocationDetailsViewController(location: locations[index])
+    }
+    
+    func toAddViewController() {
+        router.toFormViewController(formPurpose: .addLocation, location: nil)
     }
 }

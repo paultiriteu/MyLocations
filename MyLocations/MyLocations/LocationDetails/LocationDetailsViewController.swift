@@ -39,14 +39,21 @@ class LocationDetailsViewController: UIViewController {
     }
     
     private func configureUI() {
+        let rightBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editLocation))
+        navigationItem.setRightBarButton(rightBarButton, animated: true)
+        
         let location = viewModel.location
         titleLabel.text = location.tag
         addressLabel.text = location.address
-        coordinatesLabel.text = "Latitude: \(location.latitude ?? 0)\nLongitude: \(location.longitude ?? 0)"
+        coordinatesLabel.text = "Latitude: \(location.latitude)\nLongitude: \(location.longitude)"
         
-        guard let safeUrl = URL(string: viewModel.location.imageUrl ?? "") else {
+        guard let safeUrl = URL(string: viewModel.location.imageUrl) else {
             return
         }
         imageView.af_setImage(withURL: safeUrl)
+    }
+    
+    @objc private func editLocation() {
+        viewModel.toFormViewController()
     }
 }

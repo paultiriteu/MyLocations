@@ -27,11 +27,25 @@ class LocationsTableViewController: UITableViewController {
         viewModel.loadLocations()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     private func configureUI() {
+        let rightBarButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(toAddViewController))
+        navigationItem.setRightBarButton(rightBarButton, animated: true)
         viewModel.delegate = self
     
         tableView.register(UINib(nibName: "LocationTableViewCell", bundle: Bundle(for: LocationTableViewCell.self)), forCellReuseIdentifier: "LocationTableViewCell")
         tableView.isScrollEnabled = true
+    }
+    
+    @objc func toAddViewController() {
+        viewModel.toAddViewController()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

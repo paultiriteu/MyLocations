@@ -36,7 +36,9 @@ class LocationsRepository {
                 
                 try self.realm.write {
                     result.forEach { location in
-                        self.realm.add(location, update: .all)
+                        if self.realm.objects(LocationModel.self).filter("tag = %@", location.tag).isEmpty {
+                            self.realm.add(location, update: .all)
+                        }
                     }
                 }
             } catch {

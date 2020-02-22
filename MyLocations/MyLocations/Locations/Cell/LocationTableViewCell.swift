@@ -13,7 +13,7 @@ class LocationTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     func configure(location: LocationModel) {
-        if let imageUrl = URL(string: location.imageUrl ?? "") {
+        if let imageUrl = URL(string: location.imageUrl) {
             thumbnailImageView.af_setImage(withURL: imageUrl)
         }
         titleLabel.text = location.tag
