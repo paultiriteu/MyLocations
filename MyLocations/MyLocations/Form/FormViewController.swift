@@ -76,23 +76,21 @@ extension FormViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        var field = ""
+        var field: FormField
         if let location = viewModel.location {
             field = viewModel.locationFields[indexPath.row + 1]
-            if field == "Address" {
-                cell.configure(fieldName: "Address", value: location.address)
-            }
             
-            if field == "Image URL" {
-                cell.configure(fieldName: "Image URL", value: location.imageUrl)
-            }
-            
-            if field == "Latitude" {
-                cell.configure(fieldName: "Latitude", value: "\(location.latitude)")
-            }
-            
-            if field == "Longitude" {
-                cell.configure(fieldName: "Longitude", value: "\(location.longitude)")
+            switch field {
+            case .address:
+                cell.configure(fieldName: FormField.address, value: location.address)
+            case .imageURL:
+                cell.configure(fieldName: FormField.imageURL, value: location.imageUrl)
+            case .latitude:
+                cell.configure(fieldName: FormField.latitude, value: "\(location.latitude)")
+            case .longitude:
+                cell.configure(fieldName: FormField.longitude, value: "\(location.longitude)")
+            default:
+                break
             }
         }  else {
             field = viewModel.locationFields[indexPath.row]

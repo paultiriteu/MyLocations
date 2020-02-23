@@ -12,7 +12,7 @@ class FormFieldTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
-    var fieldName: String = ""
+    var fieldName: FormField = .tag
     private var textFieldValue: String = ""
     
     override func awakeFromNib() {
@@ -21,9 +21,9 @@ class FormFieldTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func configure(fieldName: String, value: String) {
+    func configure(fieldName: FormField, value: String) {
         self.fieldName = fieldName
-        titleLabel.text = fieldName
+        titleLabel.text = fieldName.rawValue
         textField.text = value
         textField.placeholder = "Insert a \(fieldName)"
     }

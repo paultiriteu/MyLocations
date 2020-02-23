@@ -13,6 +13,14 @@ enum FormPurpose {
     case editLocation
 }
 
+enum FormField: String {
+    case tag = "Tag"
+    case address = "Address"
+    case imageURL = "Image URL"
+    case latitude = "Latitude"
+    case longitude = "Longitude"
+}
+
 class FormViewModel {
     private let repository: FormRepository
     private let router: MainRouter
@@ -20,7 +28,7 @@ class FormViewModel {
     let formPurpose: FormPurpose
     let location: LocationModel?
     
-    var locationFields = ["Tag", "Address", "Image URL", "Latitude", "Longitude"]
+    var locationFields: [FormField] = [.tag, .address, .imageURL, .latitude, .longitude]
     var formCells = [FormFieldTableViewCell]()
     
     init(formPurpose: FormPurpose, location: LocationModel?, repository: FormRepository, router: MainRouter) {
@@ -35,19 +43,16 @@ class FormViewModel {
         newLocation.tag = location?.tag ?? ""
         
         formCells.forEach { cell in
-            if cell.fieldName == "Tag" {
+            switch cell.fieldName {
+            case .tag:
                 newLocation.tag = cell.getValue()
-            }
-            if cell.fieldName == "Address" {
+            case .address:
                 newLocation.address = cell.getValue()
-            }
-            if cell.fieldName == "Image URL" {
+            case .imageURL:
                 newLocation.imageUrl = cell.getValue()
-            }
-            if cell.fieldName == "Latitude" {
+            case .latitude:
                 newLocation.latitude = Float(cell.getValue()) ?? location?.latitude ?? 0
-            }
-            if cell.fieldName == "Longitude" {
+            case .longitude:
                 newLocation.longitude = Float(cell.getValue()) ?? location?.longitude ?? 0
             }
         }
