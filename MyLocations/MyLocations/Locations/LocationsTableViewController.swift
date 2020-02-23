@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
 class LocationsTableViewController: UITableViewController {
     private let viewModel: LocationsViewModel
+    private let locationManager = CLLocationManager()
+    private var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     init(viewModel: LocationsViewModel) {
         self.viewModel = viewModel
@@ -25,6 +28,13 @@ class LocationsTableViewController: UITableViewController {
         configureUI()
         showSpinner(onView: view)
         viewModel.loadLocations()
+        
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +70,7 @@ class LocationsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell", for: indexPath) as? LocationTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(location: viewModel.locations[indexPath.row])
+        cell.configure(location: viewModel.locations[indexPath.row], userLocation: userLocation)
         cell.selectionStyle = .none
         return cell
     }
@@ -96,5 +106,14 @@ extension LocationsTableViewController: LocationsViewModelDelegate {
     func locationsViewModel(_ viewModel: LocationsViewModel, didUpdateLocations locations: [LocationModel]) {
         tableView.reloadData()
         removeSpinner()
+    }
+}
+
+extension LocationsTableViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("Latitude \(locValue.latitude), longitude \(locValue.longitude)")
+        userLocation = locValue
+        tableView.reloadData()
     }
 }

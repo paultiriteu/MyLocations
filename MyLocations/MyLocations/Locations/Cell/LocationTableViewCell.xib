@@ -17,7 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvY-9F-yhT">
-                        <rect key="frame" x="70" y="25" width="362" height="20.5"/>
+                        <rect key="frame" x="70" y="25" width="300" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="300" placeholder="YES" id="Zmc-Cw-Fpy"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -29,18 +32,27 @@
                             <constraint firstAttribute="height" constant="50" id="ci6-Db-gLc"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4m-5r-n3p">
+                        <rect key="frame" x="390" y="24.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="S4m-5r-n3p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gvY-9F-yhT" secondAttribute="trailing" constant="20" id="6IS-aV-HnY"/>
                     <constraint firstItem="gvY-9F-yhT" firstAttribute="centerY" secondItem="NDU-5a-7cW" secondAttribute="centerY" id="BUq-XA-GKc"/>
-                    <constraint firstAttribute="trailing" secondItem="gvY-9F-yhT" secondAttribute="trailing" constant="10" id="NsC-LG-qGb"/>
+                    <constraint firstItem="S4m-5r-n3p" firstAttribute="centerY" secondItem="gvY-9F-yhT" secondAttribute="centerY" id="JzR-YQ-U8M"/>
                     <constraint firstItem="gvY-9F-yhT" firstAttribute="leading" secondItem="NDU-5a-7cW" secondAttribute="trailing" constant="10" id="Qdq-80-wg8"/>
                     <constraint firstItem="NDU-5a-7cW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Rim-Jb-Nv6"/>
                     <constraint firstItem="NDU-5a-7cW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="SJg-xr-gT4"/>
                     <constraint firstAttribute="bottom" secondItem="NDU-5a-7cW" secondAttribute="bottom" constant="10" id="caw-wB-XCx"/>
+                    <constraint firstAttribute="trailing" secondItem="S4m-5r-n3p" secondAttribute="trailing" constant="10" id="uPm-t4-r4E"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="distanceLabel" destination="S4m-5r-n3p" id="2jg-8k-jCm"/>
                 <outlet property="thumbnailImageView" destination="NDU-5a-7cW" id="uGl-XK-Mv3"/>
                 <outlet property="titleLabel" destination="gvY-9F-yhT" id="X0a-bH-ALD"/>
             </connections>

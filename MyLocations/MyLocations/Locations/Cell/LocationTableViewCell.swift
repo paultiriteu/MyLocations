@@ -7,16 +7,27 @@
 //
 
 import AlamofireImage
+import CoreLocation
 
 class LocationTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     
-    func configure(location: LocationModel) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailImageView.image = nil
+    }
+    
+    func configure(location: LocationModel, userLocation: CLLocationCoordinate2D) {
         if let imageUrl = URL(string: location.imageUrl) {
             thumbnailImageView.af_setImage(withURL: imageUrl)
         }
         titleLabel.text = location.tag
+        
+        let locationCoordinates = CLLocation(latitude: CLLocationDegrees(location.latitude), longitude: CLLocationDegrees(location.longitude))
+        let userCoordinates = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        let distance = userCoordinates.distance(from: locationCoordinates)
+        distanceLabel.text = "\(distance.rounded(.up) / 1000)"
     }
-    
 }
