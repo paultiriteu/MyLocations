@@ -19,15 +19,19 @@ class LocationTableViewCell: UITableViewCell {
         thumbnailImageView.image = nil
     }
     
-    func configure(location: LocationModel, userLocation: CLLocationCoordinate2D) {
+    func configure(location: LocationModel, userLocation: CLLocationCoordinate2D?) {
         if let imageUrl = URL(string: location.imageUrl) {
             thumbnailImageView.af_setImage(withURL: imageUrl)
         }
         titleLabel.text = location.tag
         
+        guard let safeUserLocation = userLocation else {
+            distanceLabel.text = ""
+            return
+        }
+        let userCoordinates = CLLocation(latitude: safeUserLocation.latitude, longitude: safeUserLocation.longitude)
         let locationCoordinates = CLLocation(latitude: CLLocationDegrees(location.latitude), longitude: CLLocationDegrees(location.longitude))
-        let userCoordinates = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         let distance = userCoordinates.distance(from: locationCoordinates)
-        distanceLabel.text = "\(distance.rounded(.up) / 1000)"
+        distanceLabel.text = String(format: "%.2f", distance / 1000) + " km"
     }
 }
